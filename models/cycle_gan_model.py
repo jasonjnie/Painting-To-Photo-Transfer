@@ -178,7 +178,7 @@ class CycleGANModel(BaseModel):
         # forward
         self.forward()
         # G_A and G_B
-        self.optimizer_G.zero_grad()
+        self.optimizer_G.zero_grad()    # clear all gradients
         self.backward_G()
         self.optimizer_G.step()
         # D_A
