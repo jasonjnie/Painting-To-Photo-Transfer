@@ -16,6 +16,7 @@ if __name__ == '__main__':
     total_steps = 0
 
     for epoch in range(opt.epoch_count, opt.niter + opt.niter_decay + 1):
+        print('epoch', epoch)
         epoch_start_time = time.time()
         iter_data_time = time.time()
         epoch_iter = 0
