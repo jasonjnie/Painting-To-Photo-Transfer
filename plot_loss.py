@@ -3,7 +3,7 @@
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
-f = open('loss_log.txt')
+f = open('./result/loss_log.txt')
 epoch_iter = 1
 epochInd = -1
 epoch = []
@@ -65,7 +65,7 @@ plt.xlabel('epochs')
 plt.ylabel('loss')
 plt.tight_layout()
 plt.suptitle('Class A (forward): Painting to Photo')
-plt.savefig('A_loss.jpg')
+plt.savefig('./result/A_loss.jpg')
 
 fig2 = plt.figure(figsize=(9, 6))
 plt.subplot(2,2,1)
@@ -90,5 +90,5 @@ plt.xlabel('epochs')
 plt.ylabel('loss')
 plt.tight_layout()
 plt.suptitle('Class B (backward): Photo to Painting')
-plt.savefig('B_loss.jpg')
+plt.savefig('./result/B_loss.jpg')
 
