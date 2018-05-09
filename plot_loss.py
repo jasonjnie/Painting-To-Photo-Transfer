@@ -11,7 +11,7 @@ all_G_A, all_Cyc_A, all_D_A, all_idt_A = [], [], [], []
 all_G_B, all_Cyc_B, all_D_B, all_idt_B = [], [], [], []
 total_loss_list = []
 
-WANG = True
+WANG = False
 
 if WANG:
     for line in f:
@@ -61,14 +61,16 @@ else:
                 G_A = float(line_split[11].split(',')[0])
                 D_A = float(line_split[9].split(',')[0])
                 Cyc_A = float(line_split[13].split(',')[0])
-                #idt_A = float(line_split[21].split(',')[0])
-                idt_A = 0
+                idt_A = float(line_split[21].split(',')[0])
+                #idt_A = 0
 
                 G_B = float(line_split[17].split(',')[0])
                 D_B = float(line_split[15].split(',')[0])
                 Cyc_B = float(line_split[19].split(',')[0])
-                #idt_B = float(line_split[23].split(',')[0])
-                idt_B = 0
+                idt_B = float(line_split[23].split(',')[0])
+                #idt_B = 0
+
+                total_loss = G_A + D_A + Cyc_A + idt_A + G_B + D_B + Cyc_B + idt_B
 
                 epoch.append(epoch_iter)
                 epoch_iter += 1
@@ -80,8 +82,9 @@ else:
                 all_Cyc_B.append(Cyc_B)
                 all_D_B.append(D_B)
                 all_idt_B.append(idt_B)
+                total_loss_list.append(total_loss)  # total loss of A-to-B
 f.close()
-
+'''
 epoch = epoch[:200]
 all_G_A = all_G_A[:200]
 all_Cyc_A = all_Cyc_A[:200]
@@ -91,7 +94,7 @@ all_G_B = all_G_B[:200]
 all_Cyc_B = all_Cyc_B[:200]
 all_D_B = all_D_B[:200]
 all_idt_B = all_idt_B[:200]
-
+'''
 
 fig1 = plt.figure(figsize=(9, 6))
 plt.subplot(2,2,1)
@@ -151,5 +154,5 @@ fig3 = plt.figure()
 plt.plot(epoch, total_loss_list)
 plt.xlabel('epoch')
 plt.ylabel('loss')
-plt.title('Combined Loss of UNet (Forward)')
+plt.title('Combined Loss of ResNet (Forward)')
 plt.savefig('./result/combined_loss')
